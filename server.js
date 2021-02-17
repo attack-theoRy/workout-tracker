@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
-const Workout = require('./models');
-
 
 const app = express();
 
@@ -29,6 +27,10 @@ mongoose.connect(
       useFindAndModify: false
     }
   );
+
+// use the routes we created
+app.use(require('./routes/api-routes.js'));
+app.use(require('./routes/html-routes.js'));
   
 
   app.listen(PORT, () => {
@@ -36,26 +38,3 @@ mongoose.connect(
   });
   
 
-  // Get all workouts route and adding totalDuration
-app.get('/workouts', (req, res) => {
-    Workout.aggregate([{ $set: { totalDuration: { $sum: '$exercises.duration' }}}])
-      .sort({ day: 1 })
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  });
-  
-  // Create workout route
-  app.post('/workouts', ({ body }, res) => {
-    Workout.create(body)
-      .then((dbWorkout) => {
-        res.json(dbWorkout);
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  });
-  
