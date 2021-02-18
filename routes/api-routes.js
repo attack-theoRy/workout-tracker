@@ -35,5 +35,32 @@ router.put('/api/workouts/:id', ({ body, params }, res) => {
       });
   });
 
+
+  // Get range of last seven workouts route
+router.get('/api/workouts/range', (req, res) => {
+    Workout.aggregate([{ $set: { totalDuration: { $sum: '$exercises.duration' } } }])
+      .sort({ day: -1 })
+      .limit(7)
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  
+
+  // save exercises in bulk if app was offline
+router.post('/api/workouts-bulk', ( { body }, res) => {
+    Workout.findByIdAndUpdate(body[0].id, { $push: { exercises: { $each: body }}})
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+  
+
   module.exports = router;
   
