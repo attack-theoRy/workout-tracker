@@ -1,8 +1,10 @@
 
+// require mongoose database
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
+// create the mongoose 
 const WorkoutSchema = new Schema({
     day: {
       type: Date,
@@ -15,7 +17,7 @@ const WorkoutSchema = new Schema({
         type: {
           type: String,
           enum: ['resistance', 'cardio'],
-          description: 'Can only be one of the enum values and is required',
+          description: 'Can only be either cardio or resistance and is required',
         },
         name: {
           type: String,
