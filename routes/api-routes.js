@@ -53,8 +53,7 @@ router.get("/api/workouts", (req, res) => {
 
 // look at the total amount of exercises in a workout
 router.get("/api/workouts/range", (req, res) => {
-  Workout.find({}).limit(7)
-    .then(dbWorkouts => {
+  Workout.find({}).then(dbWorkouts => {
       res.json(dbWorkouts);
     })
     .catch(err => {
