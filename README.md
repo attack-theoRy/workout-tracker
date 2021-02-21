@@ -1,5 +1,5 @@
 # Workout Tracker
- A burger logger created with MySQL, Node, Express and Handlebars
+ A workout tracker created with MySQL, Node, Express and Handlebars
 
 
 by Pirooz Wallace
@@ -10,7 +10,6 @@ by Pirooz Wallace
 Deployed Heroku App: [App on Heroku](https://guarded-brushlands-97283.herokuapp.com/)
 
 GitHub Repo: [Workout Tracker repo](https://github.com/attack-theoRy/workout-tracker)
-
 
 Portfolio: [Portfolio](https://attack-theory.github.io/Portfolio/)
 
@@ -25,35 +24,48 @@ Portfolio: [Portfolio](https://attack-theory.github.io/Portfolio/)
 ## Tech
 * Node.js
 * Express
-* Mongoose | MongoDB
+* Mongoose
 * Robo 3T
 * Heroku and Mongo db Atlas
+* Morgan
 
 
 ## Description
 
-This is a full-stack app that uses Node.js, MySQL, Express routes, express handlebars and heroku to add and then log burgers you have eaten from a database. You start by either adding your own burger to the list using the submit form or by devouring what's already there. 
+This is a full-stack app that uses Node.js, Express routes, Mongoose, mongo db atlas, heroku to create and track workout routines. You can create your own workout, exercise by exercise by choosing new workout and then resistance or cardio
 
-![MainSample](BurgerStart.png)
+![Resistance](Example1.png)
 
-You click on the utensil icon to devour the burger and put it in the devoured list
+![Cardio](Example2.png)
 
-![DevourBurger](DevourBurger.png)
+Then if you want to see your stats that include total duration of exercises along with total pounds and a bunch of other stats you can click 'Dashboard' to see the following stats:
+
+![Stats](Example3.png)
+
+Also when you go to continue or create a new workout you can see the stats of your last workout here
+
+![Last](Example4.png)
 
 
 
 ## Installation
 
-The app can be found with no installation needed on heroku at :  https://still-garden-09395.herokuapp.com/
+The app can be found with no installation needed on heroku at :  https://guarded-brushlands-97283.herokuapp.com/
 Or to use through terminal do the following:
+
 To use properly you need to install Node.js and in the terminal you have to use the command 
 ``` npm init -y ```
-and then also install the following dependencies 
-``` npm install express ```  to install express
-``` npm install express-handlebars  ``` to install handlebars
-``` npm install mysql ``` to install mysql
 
-The databases were seeded separately using MySQL Workbench with the 'seeds' file.
+and then also install the following dependencies 
+
+``` npm install express ```  to install express  (for routes)
+
+``` npm install mongoose  ``` to install mongoose  (for databases)
+
+``` npm install morgan ``` to install morgan (request logger middleware)
+
+
+The databases were seeded separately while testing using `npm run seed` with the 'seeds' file.
 
 
 And then finally to start the application you type ``` node server.js ``` in the terminal.
@@ -62,7 +74,7 @@ And then finally to start the application you type ``` node server.js ``` in the
 
 MIT License
 
-Copyright (c) [2020] [Pirooz Wallace]
+Copyright (c) [2021] [Pirooz Wallace]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

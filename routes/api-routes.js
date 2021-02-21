@@ -13,8 +13,22 @@ router.post("/api/workouts", (req, res) => {
 });
 
 // update / continue previous workout
-router.put("/api/workouts/:id", ({ body, params }, res) => {
-  Workout.findByIdAndUpdate(
+router.put("/api/workouts/:id", (req, res) => {
+  
+  const id = req.params.id;
+  const body = req.body;
+
+  Workout.findOneAndUpdate({ _id: id }, { $push: { exercises: body } })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
+  
+  
+ /* Workout.findByIdAndUpdate(
     params.id, { $push: { exercises: body } }, { new: true, runValidators: true }
   )
     .then(dbWorkout => {
@@ -24,6 +38,7 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
       res.json(err);
     });
 });
+*/
 
 // retrieve the workout
 router.get("/api/workouts", (req, res) => {
@@ -47,7 +62,10 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
+
+
 // delete the exercise / workout
+// not used with current buttons, trying stuff out
 router.delete("/api/workouts", ({ body }, res) => {
   Workout.findByIdAndDelete(body.id)
     .then(() => {
