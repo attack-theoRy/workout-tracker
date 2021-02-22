@@ -13,7 +13,6 @@ const workoutSchema = new Schema({
   
     exercises: [
       {
-        _id: false,
         type: {
           type: String,
           enum: ['resistance', 'cardio'],
@@ -21,14 +20,14 @@ const workoutSchema = new Schema({
         },
         name: {
           type: String,
+          required: true,
           trim: true,
-          required: 'Exercise name is Required',
         },
-        distance: Number,
         duration: Number,
         weight: Number,
         reps: Number,
         sets: Number,
+        distance: Number
       },
     ],
   },
