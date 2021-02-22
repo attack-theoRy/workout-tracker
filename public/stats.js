@@ -186,14 +186,19 @@ function populateChart(data) {
   });
 }
 
+// fixed issue where every duration was put on a different day
+// added up durations such that same workout is put in it's own day
 function duration(data) {
   let durations = [];
+  var currentDuration = 0
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      durations.push(exercise.duration);
+      currentDuration += exercise.duration
+    })
+    durations.push(currentDuration)
+      currentDuration = 0
     });
-  });
 
   return durations;
 }

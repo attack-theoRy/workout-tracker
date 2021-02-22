@@ -29,8 +29,8 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
 // retrieve the workout
 router.get("/api/workouts", (req, res) => {
   Workout.find()
-    .then(dbWorkouts => {
-      res.json(dbWorkouts);
+    .then(dbWorkout => {
+      res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
@@ -39,6 +39,7 @@ router.get("/api/workouts", (req, res) => {
 
 // look at the total amount of exercises in a workout
 router.get("/api/workouts/range", (req, res) => {
+  
   Workout.find({}).then(dbWorkouts => {
       res.json(dbWorkouts);
     })
@@ -47,7 +48,7 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
-// delete the exercise / workout
+// delete the exercise / workout  ..not used
 router.delete("/api/workouts", ({ body }, res) => {
   Workout.findByIdAndDelete(body.id)
     .then(() => {
