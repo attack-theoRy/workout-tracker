@@ -189,19 +189,31 @@ function populateChart(data) {
 // fixed issue where every duration was put on a different day
 // added up durations such that same workout is put in it's own day
 function duration(data) {
-  let durations = [];
+  /*let durations = [];
   var currentDuration = 0
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      currentDuration += exercise.duration
-    })
-    durations.push(currentDuration)
-      currentDuration = 0
+    //  currentDuration += exercise.duration
+    durations.push(exercise.exercises.duration)
+  //  durations.push(currentDuration)
+   //   currentDuration = 0
     });
+  })
 
   return durations;
+}*/
+let durations = [];
+
+data.forEach(workout => {
+  workout.exercises.forEach(exercise => {
+    durations.push(exercise.duration);
+  });
+});
+
+return durations;
 }
+
 
 function calculateTotalWeight(data) {
   let total = [];
